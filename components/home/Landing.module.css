@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css?family=Oi');
+.background{
+    background-color: #E0AAFF;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.logo{
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+    z-index: 5;
+    position: relative;
+    font-weight: 400;
+    font-style: normal;
+    font-family: "Oi", sans-serif;
+    color: #3c096c;
+    font-size: 148.97357440890124px;
+    letter-spacing: 0em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.intro{
+    background-color: #9D4EDD;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+}
+
+.introtext1{
+  width: 450px;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Oi", sans-serif;
+  color: #ffffff;
+  font-size: 40px;
+  letter-spacing: 0em;
+  line-height: 1.2;
+}
+
+.introtext2{
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Atkinson Hyperlegible";
+  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: 0em;
+  line-height: 1.5;
+  display: flex;
+  gap: 7px
+}
+
+.examples{
+    background-color: #10002B;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    height: 100vh;
+}
+.cardimg{
+    background-color: #ffffff;
+    width: 35vw;
+    /* height: 40vh; */
+    aspect-ratio: 1;
+}
+.cardtext1 {
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Atkinson Hyperlegible", "Atkinson Hyperlegible Placeholder", sans-serif;
+  color: #c77dff;
+  font-size: 20px;
+}
+.cardtext2 {
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Atkinson Hyperlegible", "Atkinson Hyperlegible Placeholder", sans-serif;
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 0em;
+  line-height: 1.5;
+  width: 35vw;
+
+}
+
+.howitworks{
+  background-color: #10002b;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 40vh;
+  padding-left: 13vw;
+  gap: 30px;
+}
+.howtitle{
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Oi", sans-serif;
+  color: #e0aaff;
+  font-size: 48px;
+  letter-spacing: 0em;
+}
+.howtext{
+  font-weight: 400;
+  font-style: normal;
+  font-family: "Atkinson Hyperlegible", "Atkinson Hyperlegible Placeholder", sans-serif;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.ready{
+    background-color: #E0AAFF;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 20px;
+}
+.readytitle{
+    font-weight: 300;
+    font-style: normal;
+    font-family: "Oi", sans-serif;
+    color: #ffffff;
+    font-size: 48px;
+    letter-spacing: 0em;
+    display: flex;
+    gap: 10px;
+}
+  .readytext{
+    font-weight: 400;
+    font-style: normal;
+    font-family: "Atkinson Hyperlegible", "Atkinson Hyperlegible Placeholder", sans-serif;
+    color: #9D4EDD;
+    font-size: 20px;
+    width: 35vw;
+    text-align: center;
+  }
+  
+.contacts{
+    background-color: #9D4EDD;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+}
+.sm{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
+    gap: 10px;
+}
+
+.pinK{
+    color: #E0AAFF;
+}
+.purple{
+    color: #3c096c;
+}
