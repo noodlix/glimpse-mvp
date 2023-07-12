@@ -26,11 +26,10 @@ const convertNewLines = (text) =>
     </span>
   ))
 
-// export function ChatLine({ role = 'assistant', content, isStreaming,}) {
   export function ChatLine({ role = 'assistant', content, cover, isStreaming}) {
-  // if (!content) {
-  //   return null
-  // }
+  if (!content) {
+    return null
+  }
   const contentWithCursor = `${content}${isStreaming ? '▍' : ''}`
   const formatteMessage = convertNewLines(contentWithCursor)
 
@@ -60,17 +59,13 @@ const convertNewLines = (text) =>
           {formatteMessage}
         </div>
 
-
-        {role === 'assistant' && cover && content !== 'Give me the name and the author of any book to start!' && (
+        {cover && content !== 'Give me the name and the author of any book to start!' ? (
           <Image 
           src={cover} 
-          // width="400" 
-          // height="400" 
           alt="generation"
           width={300}
           height={400}  />
-          
-        )}
+        ) : <></>}
       </div>
     </div>
   )

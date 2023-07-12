@@ -144,8 +144,8 @@ const useMessages = () => {
       ...messages,
       { role: 'user', content: newMessage },
     ]
-    setMessages(newMessages)
-    const last2messages = newMessages.slice(-1) // remember last 2 messages
+    setMessages(prevMsgs => ([...prevMsgs, { role: 'user', content: newMessage }]));
+    const last1Message = newMessages.slice(-1)
 
     const response = await fetch('/api/chat', {
       method: 'POST',
@@ -153,7 +153,7 @@ const useMessages = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        messages: last2messages,
+        messages: last1Message,
       }),
     })
 
@@ -181,6 +181,10 @@ const useMessages = () => {
     let done = false
 
     let lastMessage = ''
+    setMessages(prevMsgs => ([
+      ...prevMsgs,
+      { role: 'assistant', content: lastMessage },
+    ]))
 
     while (!done) {
       const { value, done: doneReading } = await reader.read()
@@ -188,11 +192,10 @@ const useMessages = () => {
       const chunkValue = decoder.decode(value)
 
       lastMessage = lastMessage + chunkValue
-
-      setMessages([
-        ...newMessages,
+      setMessages(prevMsgs => ([
+        ...(prevMsgs.slice(0, -1)),
         { role: 'assistant', content: lastMessage },
-      ])
+      ]))
 
       setLoading(false)
     }
@@ -230,23 +233,23 @@ const useMessages = () => {
      * @param {String} prompt
      */
     function addImages(jsonData) {
-      if (jsonData.error)
-      {
+      if (jsonData.error) {
         console.log(jsonData.error.message)
         return;
       }
       console.log("Tut json: " + JSON.stringify(jsonData));
       console.log('cover: ', imgData)
-      // const lastSentMessage = messages[messages.length - 1];
-      const newMessage = { role: 'assistant', content: lastMessage, cover: jsonData.data[0].url };
-      const newMessages = [...messages, newMessage];
 
-      setMessages(newMessages);
+      setMessages(prevMsgs => ([
+        ...(prevMsgs.slice(0, -1)),
+        { role: 'assistant', content: lastMessage, cover: jsonData.data[0].url },
+      ]))
     }
 
 
     setIsMessageStreaming(false)
   }
+
   return {
     imgData,
     messages,
@@ -311,21 +314,6 @@ export default function Chat() {
           isStreaming={index === messages.length - 1 && isMessageStreaming}
         />
       ))}
-      {/* {messages.map(({ content, role, cover }, index) => (
-      <div key={index}>
-        {role === 'assistant' && cover !== '' && content !== 'Give me the name and the author of any book to start!' && (
-          <Image
-            src={cover}
-            width="400"
-            height="400"
-            alt="generation"
-            key={`image-${index}`} // Unique key for the Image component
-          />
-        )}
-        <ChatLine key={`chatline-${index}`} role={role} content={content} isStreaming={index === messages.length - 1 && isMessageStreaming} />
-      </div>
-      ))}  */}
-
         {loading && <LoadingChatLine />}
 
         <div
