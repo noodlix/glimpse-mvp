@@ -1,0 +1,81 @@
+.container{
+    width: 100vw;
+    display: flex;
+    height: calc(100vh-4rem);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.maincard{
+    width: 60vh;
+    height: 60vh;
+    background-color: azure;
+    border-radius: 30px;
+}
+.titleoptions{
+    display: grid;
+    grid-template-columns: 200px 200px;
+    gap: 20px;
+}
+.option{
+    background-color: #fdfaff;
+    border: 1px solid #E0AAFF;
+    position: relative;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 210px;
+    height: 60px;
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.option::before{
+    background: radial-gradient(
+        400px circle at 100px 100px,
+        #edcdff,
+        transparent 40%
+    );
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    z-index: 2;
+}
+.option:hover{
+    background: radial-gradient(
+        400px circle at 100px 100px,
+        #d285ff,
+        transparent 40%
+    );
+}
+
+.right{
+    background-color: rgb(227, 240, 227);
+    background: radial-gradient(
+        400px circle at 100px 100px,
+        rgb(199, 245, 199),
+        transparent 40%
+    );
+    border-radius: 10px;
+    border: 1px solid rgb(199, 245, 199);
+    width: 210px;
+    height: 60px;
+}
+.wrong{
+    background-color: rgb(240, 227, 227);
+    background: radial-gradient(
+        400px circle at 100px 100px,
+        rgb(245, 199, 199),
+        transparent 40%
+    );
+    border-radius: 10px;
+    border: 1px solid rgb(245, 199, 199);
+    width: 210px;
+    height: 60px;
+}

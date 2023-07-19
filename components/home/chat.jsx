@@ -201,7 +201,7 @@ const useMessages = () => {
     }
 
     const dalleEndpoint = 'https://api.openai.com/v1/images/generations'; 
-    const key = '';  // XXX: Here should be OpenAI API key
+    const key = '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';
     const prompt = lastMessage;
     const count = 1
     const size = 512

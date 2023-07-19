@@ -1,11 +1,11 @@
 'use client'
-import { throttle } from '@/lib/throttle';
-import { BookOpenIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline';
-import axios from 'axios';
-import cx from 'classnames';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
-import { ChatLine, LoadingChatLine } from './chat-line';
+
+import { throttle } from '@/lib/throttle'
+import { BookOpenIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline'
+import cx from 'classnames'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
+import { ChatLine, LoadingChatLine } from './chat-line'
 
 // default first message to display in UI (not necessary to define the prompt)
 export const initialMessages = [
@@ -82,7 +82,7 @@ const InputMessage = ({ input, setInput, sendMessage, loading }) => {
       >
         <div className="w-4 h-4">
           <BookOpenIcon />
-        </div> {'Generate a random book'}
+        </div> {'Get a random book'}
       </button>
       <div className="mx-2 my-4 flex-1 w-full md:mx-4 md:mb-[52px] lg:max-w-2xl xl:max-w-3xl">
         <div className="relative mx-2 flex-1 flex-col rounded-md border-black/10 bg-white shadow-[0_0_10px_rgba(0,0,0,0.10)] sm:mx-4">
@@ -136,7 +136,6 @@ const useMessages = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null);
   
-  // send message to API /api/chat endpoint
   const sendMessage = async (newMessage) => {
     setLoading(true)
     setError(null)
@@ -144,8 +143,8 @@ const useMessages = () => {
       ...messages,
       { role: 'user', content: newMessage },
     ]
-    setMessages(newMessages)
-    const last2messages = newMessages.slice(-1) // remember last 2 messages
+    setMessages(prevMsgs => ([...prevMsgs, { role: 'user', content: newMessage }]));
+    const last1Message = newMessages.slice(-1)
 
     const response = await fetch('/api/chat', {
       method: 'POST',
@@ -153,7 +152,7 @@ const useMessages = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        messages: last2messages,
+        messages: last1Message,
       }),
     })
 
@@ -181,6 +180,10 @@ const useMessages = () => {
     let done = false
 
     let lastMessage = ''
+    setMessages(prevMsgs => ([
+      ...prevMsgs,
+      { role: 'assistant', content: lastMessage },
+    ]))
 
     while (!done) {
       const { value, done: doneReading } = await reader.read()
@@ -188,24 +191,20 @@ const useMessages = () => {
       const chunkValue = decoder.decode(value)
 
       lastMessage = lastMessage + chunkValue
-
-      setMessages([
-        ...newMessages,
+      setMessages(prevMsgs => ([
+        ...(prevMsgs.slice(0, -1)),
         { role: 'assistant', content: lastMessage },
-      ])
+      ]))
 
       setLoading(false)
     }
 
-
-    
     const dalleEndpoint = 'https://api.openai.com/v1/images/generations'; 
-    const key = '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';
+    const key = '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';  // XXX: Here should be OpenAI API key
     const prompt = lastMessage;
     const count = 1
     const size = 512
-    
-    
+
     const reqBody = {
       prompt: prompt,
       n: count,
@@ -233,27 +232,23 @@ const useMessages = () => {
      * @param {String} prompt
      */
     function addImages(jsonData) {
-      if (jsonData.error)
-      {
+      if (jsonData.error) {
         console.log(jsonData.error.message)
         return;
       }
       console.log("Tut json: " + JSON.stringify(jsonData));
       console.log('cover: ', imgData)
-      // const lastSentMessage = messages[messages.length - 1];
-      const newMessage = { role: 'assistant', content: lastMessage, cover: jsonData.data[0].url };
-      const newMessages = [...messages, newMessage];
 
-      setMessages(newMessages);
+      setMessages(prevMsgs => ([
+        ...(prevMsgs.slice(0, -1)),
+        { role: 'assistant', content: lastMessage, cover: jsonData.data[0].url },
+      ]))
     }
 
 
     setIsMessageStreaming(false)
-
-
- 
-
   }
+
   return {
     imgData,
     messages,
@@ -265,40 +260,6 @@ const useMessages = () => {
 }
 
 export default function Chat() {
-  const [books, setBooks] = useState([])
-  // const [formData, setFormData] = useState({ titlebyauthor: '', url: '' });
-
-
-  const [formData, setFormData] = useState({ titlebyauthor: '', url: '' });
-
-  const handleChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      await axios.post('http://127.0.0.1:8000/api/submit-book/', formData);
-      // Clear the form after successful submission
-      setFormData({ titlebyauthor: '', url: '' });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-
-  const getBooks = async () => {
-    const res = await axios.get('http://127.0.0.1:8000/api/books/?format=json')
-    setBooks(res.data)
-  }
-
-  useEffect(() => {
-    getBooks()
-  }, []);
-
-  console.log(books)
-
   const [input, setInput] = useState('')
   const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
   const messagesEndRef = useRef(null);
@@ -352,29 +313,6 @@ export default function Chat() {
           isStreaming={index === messages.length - 1 && isMessageStreaming}
         />
       ))}
-      222
- 
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="titlebyauthor" onChange={handleChange} value={formData.titlebyauthor} />
-        <input type="text" name="url" onChange={handleChange} value={formData.url} />
-        <button type="submit">Submit</button>
-      </form>
-
-      {/* {messages.map(({ content, role, cover }, index) => (
-      <div key={index}>
-        {role === 'assistant' && cover !== '' && content !== 'Give me the name and the author of any book to start!' && (
-          <Image
-            src={cover}
-            width="400"
-            height="400"
-            alt="generation"
-            key={`image-${index}`} // Unique key for the Image component
-          />
-        )}
-        <ChatLine key={`chatline-${index}`} role={role} content={content} isStreaming={index === messages.length - 1 && isMessageStreaming} />
-      </div>
-      ))}  */}
-
         {loading && <LoadingChatLine />}
 
         <div

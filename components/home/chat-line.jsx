@@ -1,20 +1,15 @@
 import { CodeBracketSquareIcon, UserCircleIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
-
 // loading placeholder animation for the chat line
 export const LoadingChatLine = () => (
-  <div
-    className="border-b border-black/10 bg-white text-gray-800"
-  >
-    <div
-      className="relative m-auto flex p-4 text-base md:max-w-2xl gap-2 md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl"
-    >
+  <div className="border-b border-black/10 bg-white text-gray-800">
+    <div className="relative m-auto flex p-4 text-base md:max-w-2xl gap-2 md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
       <div className="min-w-[30px]">
         <CodeBracketSquareIcon />
       </div>
       <span className="animate-pulse cursor-default mt-1">▍</span>
     </div>
-  </div >
+  </div>
 )
 
 // util helper to convert new lines to <br /> tags
@@ -22,7 +17,7 @@ const convertNewLines = (text) =>
   text.split('\n').map((line, i) => (
     <span key={i}>
       {line}
-      <br />
+      <br/>
     </span>
   ))
 
@@ -41,9 +36,7 @@ const convertNewLines = (text) =>
           : "bg-white text-gray-800"
       }
     >
-      <div
-        className="relative m-auto flex p-4 text-base md:max-w-2xl gap-2 md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl"
-      >
+      <div className="relative m-auto flex p-4 text-base md:max-w-2xl gap-2 md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
         <div className="min-w-[30px]">
           {role === 'assistant'
             ? (
@@ -51,8 +44,7 @@ const convertNewLines = (text) =>
             )
             : (
               <UserCircleIcon />
-            )
-          }
+            )}
         </div>
 
         <div className="prose whitespace-pre-wrap flex-1">
@@ -62,9 +54,11 @@ const convertNewLines = (text) =>
         {cover && content !== 'Give me the name and the author of any book to start!' ? (
           <Image 
           src={cover} 
-          alt="generation"
+          alt="Img"
+          // alt=<Image/>
           width={300}
-          height={400}  />
+          height={400}
+          />
         ) : <></>}
       </div>
     </div>

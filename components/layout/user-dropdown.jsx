@@ -7,7 +7,7 @@ import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { Fragment } from "react";
 
-export default function UserDropdown({ session }) {
+export default function UserDropdown({ session, setMenuOpen }) {
   const { email, image } = session?.user || {};
 
   if (!email) return null;
@@ -24,6 +24,7 @@ export default function UserDropdown({ session }) {
               width={40}
               height={40}
               className="rounded-full"
+              onClick={() => { setMenuOpen(false)}}
             />
           </Menu.Button>
         </div>
