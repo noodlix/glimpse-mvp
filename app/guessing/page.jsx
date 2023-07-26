@@ -4,7 +4,7 @@ import Image from 'next/image';
 import s from '../guessing/Guessing.module.css';
 
 export default function Guessing() {
-  // const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState([]);
 
   // useEffect(() => {
   //   fetch('/api/chat')
@@ -13,7 +13,7 @@ export default function Guessing() {
   //     .catch((error) => console.error('Error fetching books:', error));
   // }, []);
 
-  // console.log(books)
+  console.log(books)
   return (
     <div className={s.container}>
       <div className={s.maincard}>
@@ -26,11 +26,10 @@ export default function Guessing() {
           alt="The Brothers Karamazov"
         />
       </div>
-      <div className={s.titleoptions}>
-        <div className={s.option}>jh</div>
-        <div className={s.option}></div>
-        <div className={s.option}></div>
-        <div className={s.option}></div>
+      <div className={s.book}>
+        <div className={s.title}></div>
+        <div className={s.summary}></div>
+        <div className={s.url}></div>
       </div>
       {/* {books.map((book, index) => (
         <div key={index}>{book.message}</div>
