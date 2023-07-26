@@ -1,12 +1,12 @@
 'use client'
 
+// import { covergen } from '@/lib/covergen'
 import { throttle } from '@/lib/throttle'
 import { BookOpenIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline'
 import cx from 'classnames'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { ChatLine, LoadingChatLine } from './chat-line'
-
 // default first message to display in UI (not necessary to define the prompt)
 export const initialMessages = [
   {
@@ -131,7 +131,7 @@ const InputMessage = ({ input, setInput, sendMessage, loading }) => {
 
 const useMessages = () => {
   const [messages, setMessages] = useState(initialMessages)
-  const [imgData, setimgData] = useState('')
+  // const [imgData, setimgData] = useState('')
   const [isMessageStreaming, setIsMessageStreaming] = useState(false);
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null);
@@ -200,49 +200,26 @@ const useMessages = () => {
       setLoading(false)
     }
 
-    const dalleEndpoint = 'https://api.openai.com/v1/images/generations'; 
-    const key = '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';
-    const prompt = lastMessage;
-    const count = 1
-    const size = 512
-
-    const reqBody = {
-      prompt: prompt,
-      n: count,
-      size: size + "x" + size,
-      response_format: 'url',
-    };
-    const reqParams = {
+    // console.log(last1Message)
+    // console.log(lastMessage)
+    const imageres = await fetch('/api/covers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${key}`,
       },
-      body: JSON.stringify(reqBody)
-    }
-    console.log("Ya tut!");
-    fetch(dalleEndpoint, reqParams)
-      .then(res => res.json())
-      .then(json => addImages(json, prompt))
-      .catch(error => {
-          console.log(error)
-      });
+      body: JSON.stringify({ lastMessage }),
 
-    /**
-     * @param {Obj} jsonData
-     * @param {String} prompt
-     */
-    function addImages(jsonData) {
-      if (jsonData.error) {
-        console.log(jsonData.error.message)
-        return;
-      }
-      console.log("Tut json: " + JSON.stringify(jsonData));
-      console.log('cover: ', imgData)
+    })
+
+    const result = await imageres.json()
+    const bookcover = result.coverurl;
+
+    addImages(bookcover)
+    function addImages(bookcover) {
 
       setMessages(prevMsgs => ([
         ...(prevMsgs.slice(0, -1)),
-        { role: 'assistant', content: lastMessage, cover: jsonData.data[0].url },
+        { role: 'assistant', content: lastMessage, cover: bookcover },
       ]))
     }
 
@@ -251,7 +228,6 @@ const useMessages = () => {
   }
 
   return {
-    imgData,
     messages,
     isMessageStreaming,
     loading,
@@ -265,7 +241,7 @@ export default function Chat() {
   const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
-  const {imgData, messages, isMessageStreaming, loading, error, sendMessage } = useMessages()
+  const {messages, isMessageStreaming, loading, error, sendMessage } = useMessages()
   
   const handleScroll = () => {
     if (chatContainerRef.current) {

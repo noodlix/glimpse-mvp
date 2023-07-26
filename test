@@ -1,0 +1,39 @@
+import { MongoClient, ObjectId } from 'mongodb';
+
+export default async function handler(req, res) {
+  if (req.method !== 'PUT') {
+    return res.status(405).end(); // Method Not Allowed
+  }
+
+  const { id } = req.query;
+  const { newData } = req.body;
+
+  if (!id || !newData) {
+    return res.status(400).json({ error: 'Missing parameters' });
+  }
+
+  try {
+    // Connect to MongoDB
+    const client = await MongoClient.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    // Access the specific collection
+    const db = client.db(process.env.DB_NAME);
+    const collection = db.collection(process.env.COLLECTION_NAME);
+
+    // Update the object based on the provided ID
+    const result = await collection.updateOne(
+      { _id: ObjectId(id) },
+      { $set: newData }
+    );
+
+    client.close();
+
+    res.status(200).json({ message: 'Object updated successfully' });
+  } catch (error) {
+    console.error('Error editing MongoDB object:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}

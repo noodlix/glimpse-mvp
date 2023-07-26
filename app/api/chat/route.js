@@ -1,5 +1,5 @@
 import { OpenAIStream } from '@/lib/OpenAIStream';
-import clientPromise from "@/lib/mongodb";
+// import clientPromise from "@/lib/mongodb";
 
 import { NextResponse } from 'next/server';
 
@@ -33,27 +33,18 @@ export async function POST(req) {
     stream: true,
     n: 1,
   }
+  console.log('hjhghg')
 
-  const client = await clientPromise;
-  const db = client.db("Glimpse");
-  // await db.collection("books_info").insertOne({message: messages.slice(-1)[0].content});
+  // const client = await clientPromise;
+  // const db = client.db("Glimpse");
+  // // await db.collection("books_info").insertOne({message: messages.slice(-1)[0].content});
   
-  const latestMessage = messages.slice(-1)[0];
-  await db.collection("books_info").insertOne({
-  title: latestMessage.content,
-  // content: latestMessage.content,
-  // cover: latestMessage.cover
-  });
+  // const latestMessage = messages.slice(-1)[0];
+  // await db.collection("books_info").insertOne({
+  // title: latestMessage.content,
+  // // content: latestMessage.content,
+  // // cover: latestMessage.cover
+  // });
   const stream = await OpenAIStream(payload)
   return new NextResponse(stream)
 }
-
-// export async function fetchBooksInfo() {
-//   const client = await clientPromise;
-//   const db = client.db("Glimpse");
-//   const collection = db.collection("books_info");
-  
-//   const books = await collection.find().toArray();
-//   return books;
-// }
-

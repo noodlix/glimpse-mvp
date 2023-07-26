@@ -1,19 +1,19 @@
 'use client'
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import s from '../guessing/Guessing.module.css';
 
 export default function Guessing() {
-  const [books, setBooks] = useState([]);
+  // const [books, setBooks] = useState([]);
 
-  useEffect(() => {
-    fetch('/api/chat')
-      .then((response) => response.json())
-      .then((data) => setBooks(data))
-      .catch((error) => console.error('Error fetching books:', error));
-  }, []);
+  // useEffect(() => {
+  //   fetch('/api/chat')
+  //     .then((response) => response.json())
+  //     .then((data) => setBooks(data))
+  //     .catch((error) => console.error('Error fetching books:', error));
+  // }, []);
 
-  console.log(books)
+  // console.log(books)
   return (
     <div className={s.container}>
       <div className={s.maincard}>
