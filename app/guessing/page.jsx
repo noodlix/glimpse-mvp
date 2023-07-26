@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image';
-// import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import s from '../guessing/Guessing.module.css';
 
 export default function Guessing() {
