@@ -35,7 +35,7 @@ export default function Landing(){
     />
         </div>
         <div className={s.cardtext1}>Day of the Oprichnik</div>
-        <div className={s.cardtext2}>A striking scene from  with precise detail. A figure dressed in a traditional oprichnik's attire commands attention at the center. His stern visage reflects unwavering loyalty, while his clenched fist conveys authority. The backdrop portrays a dystopian Moscow, draped in an eerie red glow. Illuminated by torchlight, the scene exudes an atmosphere of oppre</div>
+        <div className={s.cardtext2}>A striking scene from  with precise detail. A figure dressed in a traditional oprichniks attire commands attention at the center. His stern visage reflects unwavering loyalty, while his clenched fist conveys authority. The backdrop portrays a dystopian Moscow, draped in an eerie red glow. Illuminated by torchlight, the scene exudes an atmosphere of oppre</div>
       </div>
     </div>
 
@@ -51,7 +51,7 @@ export default function Landing(){
     />
         </div>
         <div className={s.cardtext1}>A Separate Peace by John Knowles</div>
-        <div className={s.cardtext2}>Summer day at a New England prep school. In the foreground two young boys sit on the branch of a tree, with their legs dangling over a clear blue river. The river is surrounded by lush green trees and bushes. the school's white buildings and red roofs are seen over the trees. The sky is a perfect shade of blue, with fluffy white clouds. peaceful and idyllic, a sense of tension beneath the surface.</div>
+        <div className={s.cardtext2}>Summer day at a New England prep school. In the foreground two young boys sit on the branch of a tree, with their legs dangling over a clear blue river. The river is surrounded by lush green trees and bushes. the schools white buildings and red roofs are seen over the trees. The sky is a perfect shade of blue, with fluffy white clouds. peaceful and idyllic, a sense of tension beneath the surface.</div>
       </div>
       <div className={s.examplecard}>
         <div className={s.cardimg}>
@@ -81,7 +81,7 @@ export default function Landing(){
     <div>
     <div className={s.readytext}>Join us on the cutting edge of AI-generated book cover design.</div>
     <div className={s.readytext}>Deside if the book is for you in just a few clicks.</div>
-    <div className={s.readytext}>Let's get started!</div>
+    <div className={s.readytext}>Lets get started!</div>
     </div>
     </div>
 
