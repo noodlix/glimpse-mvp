@@ -30,11 +30,11 @@ export default function NavBar({ session }) {
               {menuopen ? ( <div className="relative inline-block">
                 <div as="div" className="relative ml-3">
                     <div className="absolute right-60 z-10 mt-4 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" onClick={() => { setMenuOpen(!menuopen)}}>
-                      <Link href="/guessing"> 
+                      {/* <Link href="/guessing">  */}
                         <div className="hover:bg-gray-100 flex-row relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-sm text-gray-700">
                           <ChevronRightIcon className="h-4 w-4"/><p className="text-sm">guessing</p>
                         </div>
-                      </Link>
+                      {/* </Link> */}
                       <Link href="/">
                         <div className="hover:bg-gray-100 flex-row relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-sm text-gray-700">
                           <ChevronRightIcon className="h-4 w-4"/><p className="text-sm">main</p>

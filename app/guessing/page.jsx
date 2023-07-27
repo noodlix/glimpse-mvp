@@ -19,16 +19,16 @@ export default async function Guessing({ books }) {
   // const [books, setBooks] = useState([]);
 
 
-  const response = await fetch('/api/covers', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ }),
+  // const response = await fetch('/api/covers', {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({ }),
 
-  })
+  // })
 
-  console.log(books)
+  // console.log(books)
   return (
     <div className={s.container}>
       <div className={s.maincard}>
@@ -41,11 +41,12 @@ export default async function Guessing({ books }) {
           alt="The Brothers Karamazov"
         />
       </div>
-      {/* <div className={s.book}>
-        <div className={s.title}></div>
-        <div className={s.summary}></div>
-        <div className={s.url}></div>
-      </div> */}
+      <div className={s.options}>
+        <div className={s.option}></div>
+        <div className={s.option}></div>
+        <div className={s.option}></div>
+        <div className={s.option}></div>
+      </div>
       {/* {books.map((book) => (
         <div key={book._id} className={s.book}>
           <div className={s.title}>{book.title}</div>
