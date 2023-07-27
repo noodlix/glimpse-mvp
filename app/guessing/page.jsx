@@ -1,17 +1,32 @@
-'use client'
+// 'use client'
 import Image from 'next/image';
-import { useState } from 'react';
+// import { useState } from 'react';
 import s from '../guessing/Guessing.module.css';
 
-export default function Guessing() {
-  const [books, setBooks] = useState([]);
+// export async function getServerSideProps() {
+//   const response = await fetch('/api/covers/route');
+//   const { booksData } = await response.json();
 
-  // useEffect(() => {
-  //   fetch('/api/chat')
-  //     .then((response) => response.json())
-  //     .then((data) => setBooks(data))
-  //     .catch((error) => console.error('Error fetching books:', error));
-  // }, []);
+//   return {
+//     props: {
+//       books: booksData,
+//     },
+//   };
+// }
+
+
+export default async function Guessing({ books }) {
+  // const [books, setBooks] = useState([]);
+
+
+  const response = await fetch('/api/covers', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ }),
+
+  })
 
   console.log(books)
   return (
@@ -26,13 +41,17 @@ export default function Guessing() {
           alt="The Brothers Karamazov"
         />
       </div>
-      <div className={s.book}>
+      {/* <div className={s.book}>
         <div className={s.title}></div>
         <div className={s.summary}></div>
         <div className={s.url}></div>
-      </div>
-      {/* {books.map((book, index) => (
-        <div key={index}>{book.message}</div>
+      </div> */}
+      {/* {books.map((book) => (
+        <div key={book._id} className={s.book}>
+          <div className={s.title}>{book.title}</div>
+          <div className={s.summary}>{book.summary}</div>
+          <div className={s.url}>{book.url}</div>
+        </div>
       ))} */}
     </div>
   );

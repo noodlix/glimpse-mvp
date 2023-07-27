@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Oi');
+
 .background{
     background-color: #E0AAFF;
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -10,7 +11,7 @@
 }
 .logo{
     flex-shrink: 0;
-    width: 100%;
+    /* width: 100%; */
     height: auto;
     z-index: 5;
     position: relative;
@@ -18,7 +19,7 @@
     font-style: normal;
     font-family: "Oi", sans-serif;
     color: #3c096c;
-    font-size: 148.97357440890124px;
+    font-size: 10vw;
     letter-spacing: 0em;
     text-transform: uppercase;
     line-height: 1.1;
@@ -27,7 +28,7 @@
 
 .intro{
     background-color: #9D4EDD;
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -41,7 +42,7 @@
   font-style: normal;
   font-family: "Oi", sans-serif;
   color: #ffffff;
-  font-size: 40px;
+  font-size: 4vw;
   letter-spacing: 0em;
   line-height: 1.2;
 }
@@ -51,7 +52,7 @@
   font-style: normal;
   font-family: "Atkinson Hyperlegible";
   color: #ffffff;
-  font-size: 20px;
+  font-size: 2vw;
   letter-spacing: 0em;
   line-height: 1.5;
   display: flex;
@@ -60,7 +61,7 @@
 
 .examples{
     background-color: #10002B;
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -79,14 +80,14 @@
   font-style: normal;
   font-family: "Atkinson Hyperlegible", "Atkinson Hyperlegible Placeholder", sans-serif;
   color: #c77dff;
-  font-size: 20px;
+  font-size: 2vw;
 }
 .cardtext2 {
   font-weight: 400;
   font-style: normal;
   font-family: "Atkinson Hyperlegible", "Atkinson Hyperlegible Placeholder", sans-serif;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 1.6vw;
   letter-spacing: 0em;
   line-height: 1.5;
   width: 35vw;
@@ -95,7 +96,7 @@
 
 .howitworks{
   background-color: #10002b;
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -109,7 +110,7 @@
   font-style: normal;
   font-family: "Oi", sans-serif;
   color: #e0aaff;
-  font-size: 48px;
+  font-size: 4.8vw;
   letter-spacing: 0em;
 }
 .howtext{
@@ -117,12 +118,12 @@
   font-style: normal;
   font-family: "Atkinson Hyperlegible", "Atkinson Hyperlegible Placeholder", sans-serif;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 2vw;
 }
 
 .ready{
     background-color: #E0AAFF;
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,7 +136,7 @@
     font-style: normal;
     font-family: "Oi", sans-serif;
     color: #ffffff;
-    font-size: 48px;
+    font-size: 4.8vw;
     letter-spacing: 0em;
     display: flex;
     gap: 10px;
@@ -145,14 +146,14 @@
     font-style: normal;
     font-family: "Atkinson Hyperlegible", "Atkinson Hyperlegible Placeholder", sans-serif;
     color: #9D4EDD;
-    font-size: 20px;
+    font-size: 2vw;
     width: 35vw;
     text-align: center;
   }
   
 .contacts{
     background-color: #9D4EDD;
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -15,9 +15,9 @@ export default function NavBar({ session }) {
     <>
       <SignInModal />
       <div
-        className={`fixed top-0 w-full ${scrolled
+        className={`fixed top-0 w-screen ${scrolled
           ? "opacity-0.5"
-          : `fixed top-0 w-full bg-[#E0AAFF] z-30 transition-all`
+          : `fixed top-0 w-screen bg-[#E0AAFF] z-30 transition-all`
           } z-30 transition-all`}
       >
         <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto">
