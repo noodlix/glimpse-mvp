@@ -211,9 +211,11 @@ const useMessages = () => {
       body: JSON.stringify({ lastMessage, titlefordb }),
 
     })
+    console.log(imageres, 'FDTHGJGJFUFUFU')
 
     const result = await imageres.json()
     const bookcover = result.coverurl;
+
 
     addImages(bookcover)
     function addImages(bookcover) {
