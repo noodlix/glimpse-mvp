@@ -10,17 +10,18 @@ export default function Landing(){
     </div>
     <div className={s.intro}>
 <div className={s.introtext1}>Find Books For You!</div>
-<div className={s.introtext2}>Enter the world of AI-generated book covers with <div className={s.purple}>Glipmse</div> - a game-changer for avid readers</div>
+<div className={s.introtext2}>Enter the world of AI-generated book covers with Glipmse - a game-changer for avid readers</div>
     </div>
+    <div className={s.examplescontainer}>
     <div className={s.examples}>
       <div className={s.examplecard}>
         <div className={s.cardimg}>
         <Image
-      src="/br.png"
-      width="1000"
-      height="1000"
-      alt="The Brothers Karamazov"
-    />
+          src="/br.png"
+          width="1000"
+          height="1000"
+          alt="The Brothers Karamazov"
+        />
         </div>
         <div className={s.cardtext1}>The Brothers Karamazov</div>
         <div className={s.cardtext2}>The painting captures a crucial scene from the book. Three individuals are positioned at the center, each displaying distinctive emotions. The eldest brother, Dmitri, exudes passionate intensity. Ivan, the intellectual skeptic, wears a contemplative expression. The youngest, Alyosha, emanates serenity and compassion. Light and shadow emphasize their internal conflict</div>
@@ -28,27 +29,24 @@ export default function Landing(){
       <div className={s.examplecard}>
         <div className={s.cardimg}>
         <Image
-      src="/2.png"
-      width="1000"
-      height="1000"
-      alt="The Brothers Karamazov"
-    />
+          src="/2.png"
+          width="1000"
+          height="1000"
+          alt="The Brothers Karamazov"
+        />
         </div>
         <div className={s.cardtext1}>Day of the Oprichnik</div>
         <div className={s.cardtext2}>A striking scene from  with precise detail. A figure dressed in a traditional oprichniks attire commands attention at the center. His stern visage reflects unwavering loyalty, while his clenched fist conveys authority. The backdrop portrays a dystopian Moscow, draped in an eerie red glow. Illuminated by torchlight, the scene exudes an atmosphere of oppre</div>
       </div>
-    </div>
-
     
-    <div className={s.examples}>
       <div className={s.examplecard}>
         <div className={s.cardimg}>
         <Image
-      src="/3.png"
-      width="1000"
-      height="1000"
-      alt="The Brothers Karamazov"
-    />
+          src="/3.png"
+          width="1000"
+          height="1000"
+          alt="The Brothers Karamazov"
+        />
         </div>
         <div className={s.cardtext1}>A Separate Peace by John Knowles</div>
         <div className={s.cardtext2}>Summer day at a New England prep school. In the foreground two young boys sit on the branch of a tree, with their legs dangling over a clear blue river. The river is surrounded by lush green trees and bushes. the schools white buildings and red roofs are seen over the trees. The sky is a perfect shade of blue, with fluffy white clouds. peaceful and idyllic, a sense of tension beneath the surface.</div>
@@ -56,28 +54,30 @@ export default function Landing(){
       <div className={s.examplecard}>
         <div className={s.cardimg}>
         <Image
-      src="/4.png"
-      width="1000"
-      height="1000"
-      alt="The Brothers Karamazov"
-    />
+          src="/4.png"
+          width="1000"
+          height="1000"
+          alt="The Brothers Karamazov"
+        />
         </div>
         <div className={s.cardtext1}>Harry Potter by J. K. Rowling</div>
         <div className={s.cardtext2}>Harry, Hermione, and Ron standing in front of a magnificent castle, their wands raised and ready for action. The castle is Hogwarts, one of the most iconic settings in modern literature, and it looms in the background, shrouded in mist and mystery. The three young wizards are dressed in their Hogwarts robes, and their faces are full of determination and resolve. Behind them, we can see glimpses of magical creatures - a unicorn, a phoenix, a dragon - all hinting at the wonders and dangers that await within the castle walls.</div>
       </div>
     </div>
+  </div>
 
-
-    <div className={s.howitworks}>
-      <div className={s.howtitle}>How does it work?</div>
-      <div>
-      <div className={s.howtext}>Enter any book title, and our AI begins weaving its magic, generating a plethora of unique designs</div>
-      <div className={s.howtext}>Get a glimpse of the book you are about to pick up</div>
-     </div>
+    <div className={s.howitworkscont}>
+      <div className={s.howitworks}>
+        <div className={s.howtitle}>How does it work?</div>
+        <div>
+        <div className={s.howtext}>Enter any book title, and our AI begins weaving its magic, generating a plethora of unique designs</div>
+        <div className={s.howtext}>Get a glimpse of the book you are about to pick up</div>
+      </div>
+      </div>
     </div>
-
+    
     <div className={s.ready}>
-    <div className={s.readytitle}>Get a <div className={s.purple}>Glipmse</div> of any book!!!</div>
+    <div className={s.readytitle}>Get a Glipmse of any book!!!</div>
     <div>
     <div className={s.readytext}>Join us on the cutting edge of AI-generated book cover design.</div>
     <div className={s.readytext}>Deside if the book is for you in just a few clicks.</div>

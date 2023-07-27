@@ -56,7 +56,7 @@ const convertNewLines = (text) =>
           src={cover} 
           alt="Img"
           // alt=<Image/>
-          width={300}
+          width={400}
           height={400}
           />
         ) : <></>}
