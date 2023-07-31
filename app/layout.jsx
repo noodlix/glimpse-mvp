@@ -1,15 +1,14 @@
 import Nav from "@/components/layout/nav";
 import { Analytics } from "@vercel/analytics/react";
 import cx from "classnames";
-import Script from 'next/script';
+import Script from "next/script";
 import { Suspense } from "react";
 import { inter, sfPro } from "./fonts";
 import "./globals.css";
 
 export const metadata = {
   title: "",
-  description:
-    "AI Book cover generator Glimpse",
+  description: "AI Book cover generator Glimpse",
   themeColor: "#FFF",
 };
 
@@ -34,18 +33,18 @@ function setViewportProperty(doc) {
 window.addEventListener('resize', setViewportProperty(document.documentElement));
 `;
 
-export default async function RootLayout({
-  children,
-}) {
+export default async function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Script id="safari-viewport-fix">{IOS_SAFARI_VIEWPORT_UNIT_CORRECTION}</Script>
+      <Script id="safari-viewport-fix">
+        {IOS_SAFARI_VIEWPORT_UNIT_CORRECTION}
+      </Script>
       <body className={cx(sfPro.variable, inter.variable)}>
-        <div className="fixed h-screen w-full" />
+        <div className="fixed h-screen w-full bg-[#E0AAFF]" />
         <Suspense fallback="...">
           <Nav />
         </Suspense>
-        <main className="flex min-h-screen w-full flex-col items-center justify-center pt-16 relative">
+        <main className="relative flex min-h-screen w-full flex-col items-center justify-center pt-16">
           {children}
         </main>
         <Analytics />

@@ -1,59 +1,21 @@
-// 'use client'
-import Image from 'next/image';
-// import { useState } from 'react';
-import s from '../guessing/Guessing.module.css';
+"use client";
+import Text from "@/components/home/text";
+import s from "../guessing/Guessing.module.css";
 
-// export async function getServerSideProps() {
-//   const response = await fetch('/api/covers/route');
-//   const { booksData } = await response.json();
-
-//   return {
-//     props: {
-//       books: booksData,
-//     },
-//   };
-// }
-
-
-export default async function Guessing({ books }) {
-  // const [books, setBooks] = useState([]);
-
-
-  // const response = await fetch('/api/covers', {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({ }),
-
-  // })
-
-  // console.log(books)
+export default async function Guessing() {
+  const texts = [
+    "In this captivating scene, a young woman stands at the edge of a vast, swirling abyss, her eyes filled with determination. Her flowing, ebony hair cascades down her back, glinting like onyx in the pale moonlight. Clad in a tattered, yet regal gown of deep crimson, she holds a shimmering sword in one hand, its blade reflecting the flickering flames that dance around her. The air crackles with energy as she prepares to face the unknown. Behind her, a hulking figure with fiery eyes watches, an embodiment of ancient power. This painting captures the essence of a thrilling adventure, where the heroine's courage and strength echo through the ages.",
+    "In this chilling tableau, the scene unfolds within the opulent study of a wealthy collector. The room is adorned with rare artifacts and ornate bookshelves, harboring secrets deep within their intricate carvings. A lifeless body lies sprawled upon the Persian rug, the victim of a sinister plot. A detective, coldly analytical, examines the scene with keen eyes. Clues litter the room like scattered fragments of a broken mirror, waiting to be meticulously pieced together. The air is heavy with tension, the truth hidden within the brushstrokes of this perplexing and captivating piece.",
+    "In a winter wonderland, a vast canvas unfolds. A group of majestic reindeer gracefully glide through pristine snow, their antlers reaching towards the heavens. Their noble leader, donning a coat of russet brown, leads them with unwavering determination. Beside them, loyal dogs with thick fur trot faithfully, their pawprints leaving trails of warmth in the cold. In the distance, figures enveloped in furs traverse the Frozen landscape on snow-shoes, leaving a fascinating pattern of footprints behind. The scene emanates strength, resilience, and harmony amidst the frozen splendor, inviting the viewer to explore the secrets of this frosty realm.",
+  ];
   return (
     <div className={s.container}>
-      <div className={s.maincard}>
-        <Image
-          src="/2.png"
-          width={0}
-          height={0}
-          sizes="100vw"
-          style={{ width: '100%', height: 'auto', borderRadius: '30px' }}
-          alt="The Brothers Karamazov"
-        />
-      </div>
-      <div className={s.options}>
-        <div className={s.option}></div>
-        <div className={s.option}></div>
-        <div className={s.option}></div>
-        <div className={s.option}></div>
-      </div>
-      {/* {books.map((book) => (
-        <div key={book._id} className={s.book}>
-          <div className={s.title}>{book.title}</div>
-          <div className={s.summary}>{book.summary}</div>
-          <div className={s.url}>{book.url}</div>
+      {texts.map((text, index) => (
+        <div className={s.card}>
+          <Text key={index} text={text} />
+          <img className={s.image} src="/br.png" alt="" />
         </div>
-      ))} */}
+      ))}
     </div>
   );
 }
