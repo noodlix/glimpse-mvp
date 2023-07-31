@@ -1,5 +1,6 @@
 "use client";
 import Text from "@/components/home/text";
+import Image from "next/image";
 import s from "../guessing/Guessing.module.css";
 
 export default async function Guessing() {
@@ -11,9 +12,17 @@ export default async function Guessing() {
   return (
     <div className={s.container}>
       {texts.map((text, index) => (
-        <div className={s.card}>
-          <Text key={index} text={text} />
-          <img className={s.image} src="/br.png" alt="" />
+        <div className={s.card} key={index}>
+          <Text text={text} />
+          {/* <img className={s.image} src="/br.png" alt="" /> */}
+          {/* <Image alt="2" src="/2.png" width={0} height={0} className="image" /> */}
+          <Image
+            alt="2"
+            src="/2.png"
+            width={400}
+            height={400}
+            style={{ width: "20vw", height: "20vw" }}
+          />
         </div>
       ))}
     </div>

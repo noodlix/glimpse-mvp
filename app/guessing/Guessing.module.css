@@ -89,6 +89,7 @@
   padding: 40px;
   gap: 20px;
   margin: 20px 0;
+  background-color: white;
 }
 
 @media screen and (max-width: 650px) {
