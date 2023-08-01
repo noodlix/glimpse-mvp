@@ -9,20 +9,26 @@ export default async function Guessing() {
     "In this chilling tableau, the scene unfolds within the opulent study of a wealthy collector. The room is adorned with rare artifacts and ornate bookshelves, harboring secrets deep within their intricate carvings. A lifeless body lies sprawled upon the Persian rug, the victim of a sinister plot. A detective, coldly analytical, examines the scene with keen eyes. Clues litter the room like scattered fragments of a broken mirror, waiting to be meticulously pieced together. The air is heavy with tension, the truth hidden within the brushstrokes of this perplexing and captivating piece.",
     "In a winter wonderland, a vast canvas unfolds. A group of majestic reindeer gracefully glide through pristine snow, their antlers reaching towards the heavens. Their noble leader, donning a coat of russet brown, leads them with unwavering determination. Beside them, loyal dogs with thick fur trot faithfully, their pawprints leaving trails of warmth in the cold. In the distance, figures enveloped in furs traverse the Frozen landscape on snow-shoes, leaving a fascinating pattern of footprints behind. The scene emanates strength, resilience, and harmony amidst the frozen splendor, inviting the viewer to explore the secrets of this frosty realm.",
   ];
+  const handleTextTypingFinished = (isTyping) => {
+    console.log("Text typing finished:", !isTyping);
+  };
+
   return (
     <div className={s.container}>
-      {texts.map((text, index) => (
+      {texts.map((text, isTyping, index) => (
         <div className={s.card} key={index}>
-          <Text text={text} />
-          {/* <img className={s.image} src="/br.png" alt="" /> */}
-          {/* <Image alt="2" src="/2.png" width={0} height={0} className="image" /> */}
-          <Image
-            alt="2"
-            src="/2.png"
-            width={400}
-            height={400}
-            style={{ width: "20vw", height: "20vw" }}
-          />
+          <Text text={text} onFinishTyping={handleTextTypingFinished} />
+          {isTyping ? (
+            <Image
+              alt="2"
+              src="/Oprichnik.jpg"
+              width={400}
+              height={400}
+              style={{ width: "20vw", height: "20vw" }}
+            />
+          ) : (
+            <div className="h-6 w-6 animate-spin rounded-full border-t-2 border-neutral-800 opacity-60 dark:border-neutral-100"></div>
+          )}
         </div>
       ))}
     </div>
