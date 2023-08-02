@@ -109,3 +109,8 @@
   width: 20vw;
   height: 20vw;
 }
+
+.title {
+  font-weight: 400;
+  font-size: larger;
+}

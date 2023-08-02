@@ -70,10 +70,10 @@ export default function NavBar({ session }) {
               setMenuOpen(!menuopen);
             }}
           >
-            <Link href="/guessing">
+            <Link href="/library">
               <div className="relative flex w-full flex-row items-center justify-start space-x-2 rounded-md p-2 text-sm text-gray-700 hover:bg-gray-100">
                 <ChevronRightIcon className="h-4 w-4" />
-                <p className="text-sm">guessing</p>
+                <p className="text-sm">library</p>
               </div>
             </Link>
             <Link href="/">
