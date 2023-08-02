@@ -14,7 +14,7 @@ export default function Landing() {
     setActiveDescription(null);
   };
   return (
-    <>
+    <div className={s.contain}>
       <div className={s.background}>
         <div className={s.logo}>Glimpse</div>
       </div>
@@ -227,6 +227,6 @@ export default function Landing() {
           </a>
         </div>
       </div>
-    </>
+    </div>
   );
 }

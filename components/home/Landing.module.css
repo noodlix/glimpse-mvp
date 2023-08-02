@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Oi");
-
+.contain {
+  overflow-x: hidden;
+}
 .background {
   background-color: #e0aaff;
   width: 100vw;
