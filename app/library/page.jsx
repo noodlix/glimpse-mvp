@@ -1,7 +1,15 @@
 "use client";
 import Text from "@/components/home/text";
+// import { authOptions } from "@/lib/authOptions";
+// import { getServerSession } from "next-auth/next";
 import Image from "next/image";
 import s from "../library/Library.module.css";
+
+// export default async function Guessing() {
+//   const session = await getServerSession(authOptions);
+
+//   return session !== null ? <GuessingPage /> : <Landing />;
+// }
 
 export default async function Guessing() {
   const texts = [
@@ -41,6 +49,12 @@ export default async function Guessing() {
       title: "Reindeer, Dogs, and Snow-Shoes by Richard J. Bush",
       content:
         "In a winter wonderland, a vast canvas unfolds. A group of majestic reindeer gracefully glide through pristine snow, their antlers reaching towards the heavens. Their noble leader, donning a coat of russet brown, leads them with unwavering determination. Beside them, loyal dogs with thick fur trot faithfully, their pawprints leaving trails of warmth in the cold. In the distance, figures enveloped in furs traverse the Frozen landscape on snow-shoes, leaving a fascinating pattern of footprints behind. The scene emanates strength, resilience, and harmony amidst the frozen splendor, inviting the viewer to explore the secrets of this frosty realm.",
+    },
+    {
+      src: "/9.png",
+      title: "Robur the Conqueror by Jules Verne",
+      content:
+        "In this breathtaking scene, a colossal airship dominates the canvas, its metallic hull gleaming under the radiant sun. Robur, the audacious conqueror, stands proudly on the deck, his steely gaze fixed on the horizon. ",
     },
   ];
   const handleTextTypingFinished = (isTyping) => {
