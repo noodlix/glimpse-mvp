@@ -11,6 +11,18 @@ export default function NavBar({ session }) {
   const scrolled = useScroll(50);
   const [menuopen, setMenuOpen] = useState(false);
 
+  const showroutes = () => {
+    setMenuOpen(true);
+    setTimeout(() => {
+      setMenuOpen(false);
+    }, 2000);
+  };
+
+  const hideroutes = () => {
+    setTimeout(() => {
+      setMenuOpen(false);
+    }, 400);
+  };
   return (
     <>
       <SignInModal />
@@ -23,12 +35,7 @@ export default function NavBar({ session }) {
       >
         <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto">
           {session ? (
-            <Bars2Icon
-              className="h-4 w-4"
-              onClick={() => {
-                setMenuOpen(!menuopen);
-              }}
-            />
+            <Bars2Icon className="h-4 w-4" onMouseEnter={() => showroutes()} />
           ) : (
             <></>
           )}
@@ -53,9 +60,12 @@ export default function NavBar({ session }) {
       </div>
 
       {menuopen ? (
-        <div className="absolute right-0 z-30 mt-14 w-11/12">
+        <div
+          className="absolute right-0 z-30 mt-14 w-11/12"
+          onMouseLeave={() => hideroutes()}
+        >
           <div
-            className="w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            className="w-48 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             onClick={() => {
               setMenuOpen(!menuopen);
             }}

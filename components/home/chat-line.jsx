@@ -1,5 +1,12 @@
-import { PencilIcon, UserCircleIcon } from "@heroicons/react/24/outline";
+"use client";
+import {
+  GlobeAltIcon,
+  PencilIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
 // loading placeholder animation for the chat line
 export const LoadingChatLine = () => (
   <div className="border-b border-black/10 bg-white text-gray-800">
@@ -26,7 +33,28 @@ export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
     return null;
   }
   const contentWithCursor = `${content}${isStreaming ? "▍" : ""}`;
-  const formatteMessage = convertNewLines(contentWithCursor);
+  let formatteMessage = convertNewLines(contentWithCursor);
+
+  const [flagsopen, setFlagsOpen] = useState(false);
+  const [language, setLanguage] = useState(null);
+
+  const showflags = () => {
+    setFlagsOpen(true);
+  };
+
+  const hideflags = () => {
+    setFlagsOpen(false);
+  };
+
+  const handleLanguageClick = (selectedLanguage) => {
+    setLanguage(selectedLanguage);
+    formatteMessage = "translation";
+    hideflags();
+  };
+
+  useEffect(() => {
+    console.log("language:", language);
+  }, [language]);
 
   return (
     <div
@@ -46,9 +74,48 @@ export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
             <div className="prose flex-1 whitespace-pre-wrap">
               {formatteMessage}
             </div>
-            {/* <div className="border-r- mt-6 w-6">
-              <GlobeAltIcon />
-            </div> */}
+
+            {cover ? (
+              <div className="mt-6 flex flex-row">
+                <div
+                  className="h-6 w-6 "
+                  onMouseEnter={() => showflags()}
+                  onClick={() => showflags()}
+                >
+                  <GlobeAltIcon />
+                </div>
+                {flagsopen ? (
+                  <div
+                    className="mb-2 ml-3 flex w-24 flex-row rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    onMouseLeave={() => hideflags()}
+                    onClick={() => hideflags()}
+                  >
+                    <div
+                      className="relative flex w-8  rounded-md p-2 text-sm  hover:bg-gray-100"
+                      onClick={() => handleLanguageClick("🇰🇿")}
+                    >
+                      🇰🇿
+                    </div>
+                    <div
+                      className="relative flex w-8  rounded-md p-2 text-sm  hover:bg-gray-100"
+                      onClick={() => handleLanguageClick("🇷🇺")}
+                    >
+                      🇷🇺
+                    </div>
+                    <div
+                      className="relative flex w-8  rounded-md p-2 text-sm  hover:bg-gray-100"
+                      onClick={() => handleLanguageClick("🇬🇧")}
+                    >
+                      🇬🇧
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
           {cover &&
           content !==

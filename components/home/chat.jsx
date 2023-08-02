@@ -7,7 +7,7 @@ import cx from "classnames";
 import { useCallback, useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { ChatLine, LoadingChatLine } from "./chat-line";
-// default first message to display in UI (not necessary to define the prompt)
+
 export const initialMessages = [
   {
     role: "assistant",
@@ -34,19 +34,15 @@ const InputMessage = ({ input, setInput, sendMessage, loading }) => {
       );
       const data = await response.json();
 
-      // Generate a random index within the range of the number of books received
       const randomIndex = Math.floor(Math.random() * data.items.length);
 
-      // Extract book title and author from the randomly chosen book
       const book = data.items[randomIndex].volumeInfo;
       const title = book.title;
       const authors = book.authors;
 
-      // Set the book data in the component state
       setBook({ title, authors });
       setInput(`${book?.title} by ${book?.authors}`);
 
-      // Set the book data in the component state
       console.log(book?.title);
       console.log(book?.authors);
     } catch (error) {
@@ -132,12 +128,10 @@ const InputMessage = ({ input, setInput, sendMessage, loading }) => {
 
 const useMessages = () => {
   const [messages, setMessages] = useState(initialMessages);
-  // const [imgData, setimgData] = useState('')
   const [isMessageStreaming, setIsMessageStreaming] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // send message to API /api/chat endpoint
   const sendMessage = async (newMessage) => {
     setLoading(true);
     setError(null);
@@ -200,7 +194,6 @@ const useMessages = () => {
 
       setLoading(false);
     }
-
     // console.log(last1Message[0].content)
     const titlefordb = last1Message[0].content;
     // console.log(lastMessage)

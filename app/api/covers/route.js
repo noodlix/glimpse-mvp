@@ -1,5 +1,7 @@
+import { authOptions } from "@/lib/authOptions";
 import { covergen } from "@/lib/covergen";
 import clientPromise from "@/lib/mongodb";
+import { getServerSession } from "next-auth/next";
 import { NextResponse } from "next/server";
 
 export async function getBooksData() {
@@ -13,9 +15,12 @@ export async function POST(req, res) {
   // export default async function handler(req, res) {
   // if (req.method === 'POST') {
   const { lastMessage, titlefordb } = await req.json();
-  console.log(titlefordb, "ABOOBABABJS~");
+  // console.log(titlefordb, "ABOOBABABJS~");
   const count = 1;
   const size = 512;
+  const session = await getServerSession(authOptions);
+  const { email, image } = session?.user || {};
+  const currentDate = new Date(Date.now() + 21600000);
 
   const coverprompt = {
     prompt: lastMessage,
@@ -33,6 +38,8 @@ export async function POST(req, res) {
     title: titlefordb,
     summary: lastMessage,
     url: coverurl,
+    email: email,
+    date: currentDate.toISOString(),
   });
 
   // const urlfordb = coverurl

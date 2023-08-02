@@ -237,7 +237,7 @@ const useMessages = () => {
         return;
       }
       console.log("Tut json: " + JSON.stringify(jsonData));
-      console.log("cover: ", imgData);
+      // console.log("cover: ", imgData);
 
       setMessages((prevMsgs) => [
         ...prevMsgs.slice(0, -1),

@@ -32,7 +32,7 @@ export async function POST(req) {
     stream: true,
     n: 1,
   };
-  console.log("hjhghg");
+  // console.log("hjhghg");
 
   // const client = await clientPromise;
   // const db = client.db("Glimpse");

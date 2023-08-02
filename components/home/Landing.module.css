@@ -213,10 +213,6 @@
   color: #e0aaff;
 }
 .purple {
-  .smdescriptions {
-    display: flex;
-    flex-direction: row;
-  }
   color: #3c096c;
 }
 
