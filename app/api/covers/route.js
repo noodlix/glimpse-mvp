@@ -42,6 +42,17 @@ export async function POST(req, res) {
     date: currentDate.toISOString(),
   });
 
+  async function checkUserExists(email) {
+    const user = await db.collection("users").findOne({ email });
+    return user !== null;
+  }
+  const userExists = await checkUserExists(email);
+  if (!userExists) {
+    // Save the email to the 'users' collection
+    await db.collection("users").insertOne({
+      email: email,
+    });
+  }
   // const urlfordb = coverurl
   // console.log(urlfordb, 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
 

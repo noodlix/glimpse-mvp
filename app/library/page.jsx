@@ -56,6 +56,24 @@ export default async function Guessing() {
       content:
         "In this breathtaking scene, a colossal airship dominates the canvas, its metallic hull gleaming under the radiant sun. Robur, the audacious conqueror, stands proudly on the deck, his steely gaze fixed on the horizon. ",
     },
+    {
+      src: "/11.png",
+      title: "The Civilisation of the Renaissance in Italy by Jacob Burckhardt",
+      content:
+        "Brushstrokes of historical brilliance come alive. A bustling Italian piazza emerges, adorned with vibrant colors and intricate details. Figures from the past, adorned in sumptuous garments, engage in animated discussions on art and literature.",
+    },
+    {
+      src: "/12.png",
+      title: "Stories from the Pentamerone by Giambattista Basile",
+      content:
+        "In this captivating painting, a magical world unfolds before our eyes. In the center, a courageous prince battles a fearsome dragon, his sword gleaming in the sunlight. Surrounding them are enchanting creatures, from mischievous fairies to noble",
+    },
+    {
+      src: "/13.png",
+      title: "The Civilisation of the Renaissance in Italy by Jacob Burckhardt",
+      content:
+        "Behold, a vivid tableau capturing the Renaissance's essence. A sprawling Italian cityscape, adorned with grand palaces and bustling markets, teems with life. Scholars and artisans gather, their minds ignited by the revival of learning and arts. Noble lords",
+    },
   ];
   const handleTextTypingFinished = (isTyping) => {
     console.log("Text typing finished:", !isTyping);
