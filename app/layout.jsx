@@ -40,7 +40,7 @@ export default async function RootLayout({ children }) {
         {IOS_SAFARI_VIEWPORT_UNIT_CORRECTION}
       </Script>
       <body className={cx(sfPro.variable, inter.variable)}>
-        <div className="fixed h-screen w-full bg-[#E0AAFF]" />
+        <div className="fixed h-screen w-full " />
         <Suspense fallback="...">
           <Nav />
         </Suspense>
