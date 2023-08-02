@@ -29,14 +29,11 @@ const convertNewLines = (text) =>
   ));
 
 export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
-  if (!content) {
-    return null;
-  }
-  const contentWithCursor = `${content}${isStreaming ? "▍" : ""}`;
-  let formatteMessage = convertNewLines(contentWithCursor);
-
   const [flagsopen, setFlagsOpen] = useState(false);
   const [language, setLanguage] = useState(null);
+
+  const contentWithCursor = `${content}${isStreaming ? "▍" : ""}`;
+  let formatteMessage = convertNewLines(contentWithCursor);
 
   const showflags = () => {
     setFlagsOpen(true);
@@ -55,7 +52,9 @@ export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
   useEffect(() => {
     console.log("language:", language);
   }, [language]);
-
+  if (!content) {
+    return null;
+  }
   return (
     <div
       className={
