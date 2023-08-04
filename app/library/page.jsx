@@ -74,9 +74,24 @@ export default async function Guessing() {
       content:
         "Behold, a vivid tableau capturing the Renaissance's essence. A sprawling Italian cityscape, adorned with grand palaces and bustling markets, teems with life. Scholars and artisans gather, their minds ignited by the revival of learning and arts. Noble lords",
     },
-  ];
-  const handleTextTypingFinished = (isTyping) => {
-    console.log("Text typing finished:", !isTyping);
+  ]);
+
+  const [flagopenindex, setFlagopenindex] = useState(null);
+
+  const showflags = (index) => {
+    setFlagopenindex(index);
+  };
+
+  const hideflags = () => {
+    setFlagopenindex(null);
+  };
+
+  const handleLanguageClick = (selectedLanguage, index) => {
+    const updatedTexts = [...texts];
+    updatedTexts[index].language = selectedLanguage;
+    updatedTexts[index].content = "translation";
+    setTexts(updatedTexts);
+    hideflags();
   };
 
   return (
