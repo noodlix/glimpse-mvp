@@ -140,7 +140,7 @@ export default function Guessing() {
       body: JSON.stringify({ inputText, desiredlang }),
     });
     setTranslatedText((await translation.json()).resulttext);
-    console.log("AAAAAAAAAAAA", translatedText);
+    // console.log("AAAAAAAAAAAA", translatedText);
     setUpdateindex(index);
     hideflags();
   };

@@ -29,6 +29,7 @@ const convertNewLines = (text) =>
 export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
   const [flagsopen, setFlagsOpen] = useState(false);
   const [language, setLanguage] = useState(null);
+  const [translatedText, setTranslatedText] = useState("");
 
   const contentWithCursor = `${content}${isStreaming ? "▍" : ""}`;
   let formatteMessage = convertNewLines(contentWithCursor);
@@ -41,9 +42,31 @@ export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
     setFlagsOpen(false);
   };
 
-  const handleLanguageClick = (selectedLanguage) => {
+  const translateTo = async (selectedLanguage) => {
     setLanguage(selectedLanguage);
-    formatteMessage = "translation";
+    console.log(content, selectedLanguage);
+    const translation = await fetch("/api/googleTranslate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        inputText: content,
+        desiredlang: selectedLanguage,
+      }),
+    });
+
+    setTranslatedText((await translation.json()).resulttext);
+    console.log("AAAAAAAAAAAA", translatedText);
+    // try {
+    //   const responseJson = await translation.json();
+    //   setTranslatedText(responseJson.resulttext);
+    //   console.log( responseJson.resulttext);
+    //   console.log( translatedText);
+    // } catch (error) {
+    //   console.error("Error parsing JSON response:", error);
+    // }
+
     hideflags();
   };
 
@@ -68,8 +91,13 @@ export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
 
         <div className="flex w-full flex-col  sm:flex-row sm:gap-4">
           <div className="w-full ">
-            <div className="prose whitespace-pre-wrap ">{formatteMessage}</div>
-
+            {translatedText === "" ? (
+              <div className="prose whitespace-pre-wrap ">
+                {formatteMessage}
+              </div>
+            ) : (
+              <div className="prose whitespace-pre-wrap ">{translatedText}</div>
+            )}
             {cover ? (
               <div className="mt-2 flex flex-row">
                 <div
@@ -87,19 +115,19 @@ export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
                   >
                     <div
                       className="relative flex w-8  rounded-md p-2 text-sm  hover:bg-gray-100"
-                      onClick={() => handleLanguageClick("🇰🇿")}
+                      onClick={() => translateTo("kk")}
                     >
                       🇰🇿
                     </div>
                     <div
                       className="relative flex w-8  rounded-md p-2 text-sm  hover:bg-gray-100"
-                      onClick={() => handleLanguageClick("🇷🇺")}
+                      onClick={() => translateTo("ru")}
                     >
                       🇷🇺
                     </div>
                     <div
                       className="relative flex w-8  rounded-md p-2 text-sm  hover:bg-gray-100"
-                      onClick={() => handleLanguageClick("🇬🇧")}
+                      onClick={() => translateTo("en")}
                     >
                       🇬🇧
                     </div>
