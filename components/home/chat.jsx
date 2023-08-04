@@ -194,9 +194,7 @@ const useMessages = () => {
 
       setLoading(false);
     }
-    // console.log(last1Message[0].content)
     const titlefordb = last1Message[0].content;
-    // console.log(lastMessage)
     const imageres = await fetch("/api/covers", {
       method: "POST",
       headers: {

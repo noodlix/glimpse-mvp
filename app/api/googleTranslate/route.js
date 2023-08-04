@@ -1,18 +1,17 @@
-import { googleTranslate } from "@/lib/googleTranslate";
+import { translateText } from "@/lib/googleTranslate";
 import { NextResponse } from "next/server";
 
-const API_KEY = "AIzaSyBV_ixAW3XGP-vabufb8gyRBKBYz2dZ6aQ";
+const API_KEY = process.env.GOOGLE_TRANSLATE_API_KEY;
 
 export async function POST(req, res) {
-  const { text, lang } = await req.json();
+  const { inputText, desiredlang } = await req.json();
 
   const translationprompt = {
-    q: text,
-    target: lang,
+    q: inputText,
+    target: desiredlang,
     key: API_KEY,
   };
 
-  const resulttext = await googleTranslate(translationprompt);
-
+  const resulttext = await translateText(translationprompt);
   return new NextResponse(JSON.stringify({ resulttext }));
 }
