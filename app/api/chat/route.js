@@ -14,7 +14,7 @@ export async function POST(req) {
   const messages = [
     {
       role: "system",
-      content: `write preview of the given book under 400 characters as if you were describing a painting of an important scene from the book. use epithets and describe everything literally and precisely, do not say the name of the book or the name of the author  do not include any additional information`,
+      content: `write preview of the given book in english under 400 characters as if you were describing a painting of an important scene from the book describe everything literally and precisely`,
     },
   ];
   messages.push(...body?.messages);

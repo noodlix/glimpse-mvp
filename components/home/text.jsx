@@ -12,9 +12,9 @@ const Text = ({ text, onFinishTyping }) => {
         index++;
       } else {
         clearInterval(interval);
-        setIsTyping(false); // Set isTyping to false after typing animation is complete
+        setIsTyping(false);
         if (typeof onFinishTyping === "function") {
-          onFinishTyping(false); // Call the callback function with isTyping as false
+          onFinishTyping(false);
         }
       }
     }, 50);

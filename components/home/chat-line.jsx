@@ -7,7 +7,6 @@ import {
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-// loading placeholder animation for the chat line
 export const LoadingChatLine = () => (
   <div className="border-b border-black/10 bg-white text-gray-800">
     <div className="relative m-auto flex gap-2 p-4 text-base md:max-w-2xl md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
@@ -19,7 +18,6 @@ export const LoadingChatLine = () => (
   </div>
 );
 
-// util helper to convert new lines to <br /> tags
 const convertNewLines = (text) =>
   text.split("\n").map((line, i) => (
     <span key={i}>
@@ -63,19 +61,17 @@ export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
           : "bg-white text-gray-800"
       }
     >
-      <div className="relative m-auto flex gap-2 p-4 text-base md:max-w-2xl md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
+      <div className="relative m-auto flex gap-2  p-4 text-base md:max-w-2xl md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
         <div className="min-w-[30px]">
           {role === "assistant" ? <PencilIcon /> : <UserCircleIcon />}
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:gap-4">
-          <div>
-            <div className="prose flex-1 whitespace-pre-wrap">
-              {formatteMessage}
-            </div>
+        <div className="flex w-full flex-col  sm:flex-row sm:gap-4">
+          <div className="w-full ">
+            <div className="prose whitespace-pre-wrap ">{formatteMessage}</div>
 
             {cover ? (
-              <div className="mt-6 flex flex-row">
+              <div className="mt-2 flex flex-row">
                 <div
                   className="h-6 w-6 "
                   onMouseEnter={() => showflags()}
@@ -116,18 +112,27 @@ export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
               <></>
             )}
           </div>
-          {cover &&
-          content !==
-            "Give me the name and the author of any book to start!" ? (
-            <Image
-              src={cover}
-              alt="Img"
-              // alt=<Image/>
-              width={300}
-              height={300}
-            />
+          {cover ? (
+            <div className="w-300px h-300px">
+              <Image
+                src={cover}
+                alt="Img"
+                // alt=<Image/>
+                width={300}
+                height={300}
+              />
+            </div>
           ) : (
             <></>
+          )}
+          {cover ||
+          content === "Give me the name and the author of any book to start!" ||
+          role === "user" ? (
+            <></>
+          ) : (
+            <div className="flex w-2/5 flex-row items-center justify-center ">
+              <div className="h-6 w-6 animate-spin rounded-full border-t-2 border-neutral-800 opacity-60 dark:border-neutral-100"></div>
+            </div>
           )}
         </div>
       </div>

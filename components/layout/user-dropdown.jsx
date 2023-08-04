@@ -11,23 +11,6 @@ export default function UserDropdown({ session, setMenuOpen }) {
   const { email, image } = session?.user || {};
 
   if (!email) return null;
-
-  //отсюда емайл на апи роут коверы пост и там его сохранять с каждым юзером,
-  //датабазу юзеров
-
-  //   const storeEmail = async () => {
-
-  //   const em = await fetch("/api/covers", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ email }),
-  //   });
-  // console.log("email AAAAAAAAAAAAAAAAAA: ", email);
-
-  // };
-
   return (
     <div className="relative inline-block text-left">
       <Menu as="div" className="relative ml-3">
