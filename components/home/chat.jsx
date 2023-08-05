@@ -2,7 +2,12 @@
 
 // import { covergen } from '@/lib/covergen'
 import { throttle } from "@/lib/throttle";
-import { BookOpenIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import {
+  BookOpenIcon,
+  MoonIcon,
+  PaperAirplaneIcon,
+  SunIcon,
+} from "@heroicons/react/24/outline";
 import cx from "classnames";
 import { useCallback, useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -11,15 +16,23 @@ import { ChatLine, LoadingChatLine } from "./chat-line";
 export const initialMessages = [
   {
     role: "assistant",
-    content: "Give me the name and the author of any book to start!",
+    content:
+      "Give me the name and the author of any book and wait for AI generated summaries and captivating images!",
   },
 ];
 
-const InputMessage = ({ input, setInput, sendMessage, loading }) => {
+const InputMessage = ({
+  input,
+  setInput,
+  sendMessage,
+  loading,
+  sendDataToChat,
+}) => {
   const [isGeneratingBook, setIsGeneratingBook] = useState(false);
   const [book, setBook] = useState(null);
   const [bookError, setBookError] = useState(null);
   const inputRef = useRef(null);
+  const [light, setLight] = useState(true);
 
   const shouldShowLoadingIcon = loading || isGeneratingBook;
   const inputActive = input !== "" && !shouldShowLoadingIcon;
@@ -66,60 +79,101 @@ const InputMessage = ({ input, setInput, sendMessage, loading }) => {
     }
   }, [bookError]);
 
+  const sendTheme = () => {
+    setLight(!light);
+    sendDataToChat(light);
+  };
+
   return (
-    <div className="fixed bottom-0 left-0 right-0 clear-both flex flex-col items-center bg-gradient-to-b from-transparent via-white to-white">
+    <div
+      className={`fixed bottom-0 left-0 right-0 clear-both flex flex-col items-center bg-gradient-to-b from-transparent  ${
+        light ? "via-white to-white" : "via-[#3c096c] to-[#10002b]"
+      }`}
+    >
       <button
-        className="mx-auto flex w-fit items-center gap-3 rounded border border-neutral-200 bg-white px-4 py-2 text-sm text-black hover:opacity-50 disabled:opacity-25"
+        className={`mx-auto flex w-fit items-center gap-3 rounded border px-4 py-2 text-sm text-black hover:opacity-50 disabled:opacity-25 ${
+          light
+            ? "border-neutral-200 bg-white "
+            : "border-[#3c096c] bg-[#10002b] text-gray-100"
+        }`}
         onClick={fetchRandomBook}
         disabled={isGeneratingBook}
       >
         <div className="h-4 w-4">
           <BookOpenIcon />
         </div>{" "}
-        {"Generate a random book"}
+        {"Get a random book"}
       </button>
-      <div className="mx-2 my-4 w-full flex-1 md:mx-4 md:mb-[52px] lg:max-w-2xl xl:max-w-3xl">
-        <div className="relative mx-2 flex-1 flex-col rounded-md border-black/10 bg-white shadow-[0_0_10px_rgba(0,0,0,0.10)] sm:mx-4">
-          <input
-            ref={inputRef}
-            aria-label="chat input"
-            required
-            className="m-0 w-full border-0 bg-transparent p-0 py-3 pl-4 pr-12 text-black"
-            placeholder="Type a message..."
-            value={input}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
+      <div
+        className={`flex w-full flex-row items-center justify-center ${
+          light ? "bg-white" : "bg-[#10002b] text-gray-100"
+        }`}
+      >
+        <div className="md:mb-8 lg:mb-8  xl:mb-8 ">
+          <div onClick={sendTheme}>
+            {light ? (
+              <SunIcon className="ml-2 h-6 w-6" />
+            ) : (
+              <MoonIcon className="ml-2 h-6 w-6" />
+            )}
+          </div>
+        </div>
+
+        <div className="mx-2 my-4 w-full flex-1 md:mx-4 md:mb-[52px] lg:max-w-2xl xl:max-w-3xl">
+          <div
+            className={`relative mx-2 flex-1 flex-col rounded-md border-black/10  shadow-[0_0_10px_rgba(0,0,0,0.10)] sm:mx-4 ${
+              light ? "bg-white" : "bg-[#3c096c] text-gray-100"
+            }`}
+          >
+            <input
+              ref={inputRef}
+              aria-label="chat input"
+              required
+              className={`m-0 w-full border-0 bg-transparent p-0 py-3 pl-4 pr-12  ${
+                light ? "text-black " : "text-gray-100"
+              }`}
+              placeholder="Type in the title of a book..."
+              value={input}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  sendMessage(input);
+                  setInput("");
+                }
+              }}
+              onChange={(e) => {
+                setInput(e.target.value);
+              }}
+              disabled={isGeneratingBook}
+            />
+            <button
+              className={cx(
+                shouldShowLoadingIcon && "hover:text-inhert hover:bg-inherit",
+                inputActive &&
+                  "bg-black hover:bg-neutral-800 hover:text-neutral-100",
+                "absolute right-2 top-2 rounded-sm p-1 text-neutral-800 opacity-60 transition-colors hover:bg-neutral-200 hover:text-neutral-900",
+              )}
+              type="submit"
+              onClick={() => {
                 sendMessage(input);
                 setInput("");
-              }
-            }}
-            onChange={(e) => {
-              setInput(e.target.value);
-            }}
-            disabled={isGeneratingBook}
-          />
-          <button
-            className={cx(
-              shouldShowLoadingIcon && "hover:text-inhert hover:bg-inherit",
-              inputActive &&
-                "bg-black hover:bg-neutral-800 hover:text-neutral-100",
-              "absolute right-2 top-2 rounded-sm p-1 text-neutral-800 opacity-60 transition-colors hover:bg-neutral-200 hover:text-neutral-900",
-            )}
-            type="submit"
-            onClick={() => {
-              sendMessage(input);
-              setInput("");
-            }}
-            disabled={shouldShowLoadingIcon}
-          >
-            {shouldShowLoadingIcon ? (
-              <div className="h-6 w-6 animate-spin rounded-full border-t-2 border-neutral-800 opacity-60 dark:border-neutral-100"></div>
-            ) : (
-              <div className={cx(inputActive && "text-white", "h-6 w-6")}>
-                <PaperAirplaneIcon />
-              </div>
-            )}
-          </button>
+              }}
+              disabled={shouldShowLoadingIcon}
+            >
+              {shouldShowLoadingIcon ? (
+                <div
+                  className={`h-6 w-6 animate-spin rounded-full border-t-2  opacity-60 dark:border-neutral-100 ${
+                    light ? "border-black " : "border-gray-100"
+                  }`}
+                ></div>
+              ) : (
+                <div className={cx(inputActive && "text-white", "h-6 w-6")}>
+                  <PaperAirplaneIcon
+                    className={`${light ? "" : "text-gray-100"}`}
+                  />
+                </div>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -230,6 +284,7 @@ const useMessages = () => {
 export default function Chat() {
   const [input, setInput] = useState("");
   const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
+  const [receivedLight, setReceivedLight] = useState(true);
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
   const { messages, isMessageStreaming, loading, error, sendMessage } =
@@ -247,6 +302,10 @@ export default function Chat() {
         setAutoScrollEnabled(true);
       }
     }
+  };
+
+  const sendDataToChat = (light) => {
+    setReceivedLight(!light);
   };
 
   const scrollDown = useCallback(() => {
@@ -267,7 +326,11 @@ export default function Chat() {
   }, [error]);
 
   return (
-    <div className="w-full flex-1 overflow-hidden border-zinc-100 bg-white">
+    <div
+      className={`w-full flex-1 overflow-hidden border-zinc-100 ${
+        receivedLight ? "bg-white" : "bg-[#10002b]"
+      }`}
+    >
       <div
         ref={chatContainerRef}
         className="relative max-h-[calc(100vh-4rem)] w-full flex-1 overflow-x-hidden"
@@ -280,16 +343,22 @@ export default function Chat() {
             content={content}
             cover={cover}
             isStreaming={index === messages.length - 1 && isMessageStreaming}
+            receivedLight={receivedLight}
           />
         ))}
-        {loading && <LoadingChatLine />}
+        {loading && <LoadingChatLine receivedLight={receivedLight} />}
 
-        <div className="h-[152px] bg-white" ref={messagesEndRef} />
+        <div
+          className={`h-[152px] ${receivedLight ? "bg-white" : "bg-[#10002b]"}`}
+          ref={messagesEndRef}
+        />
+        {/* <div className="h-[152px] bg-red-200"></div> */}
         <InputMessage
           input={input}
           setInput={setInput}
           sendMessage={sendMessage}
           isLoading={loading || isMessageStreaming}
+          sendDataToChat={sendDataToChat}
         />
       </div>
       <Toaster />

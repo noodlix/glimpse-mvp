@@ -1,19 +1,29 @@
 "use client";
 import {
   GlobeAltIcon,
-  PencilIcon,
+  SparklesIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export const LoadingChatLine = () => (
-  <div className="border-b border-black/10 bg-white text-gray-800">
+export const LoadingChatLine = ({ receivedLight }) => (
+  <div
+    className={`border-b border-black/10 text-gray-800 ${
+      receivedLight ? "bg-white" : "bg-[#10002b] text-gray-100"
+    }`}
+  >
     <div className="relative m-auto flex gap-2 p-4 text-base md:max-w-2xl md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
       <div className="min-w-[30px]">
-        <PencilIcon />
+        <SparklesIcon className={`${receivedLight ? "" : " text-gray-100"}`} />
       </div>
-      <span className="mt-1 animate-pulse cursor-default">▍</span>
+      <span
+        className={`mt-1 animate-pulse cursor-default ${
+          receivedLight ? "bg-white" : "bg-[#10002b] text-gray-100"
+        }`}
+      >
+        ▍
+      </span>
     </div>
   </div>
 );
@@ -26,7 +36,13 @@ const convertNewLines = (text) =>
     </span>
   ));
 
-export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
+export function ChatLine({
+  role = "assistant",
+  content,
+  cover,
+  isStreaming,
+  receivedLight,
+}) {
   const [flagsopen, setFlagsOpen] = useState(false);
   const [language, setLanguage] = useState(null);
   const [translatedText, setTranslatedText] = useState("");
@@ -78,25 +94,45 @@ export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
   }
   return (
     <div
-      className={
-        role === "assistant"
-          ? "bg-white text-gray-800"
-          : "bg-white text-gray-800"
-      }
+      className={` text-gray-800 ${
+        receivedLight ? "bg-white" : "bg-[#10002b] text-gray-100"
+      }`}
     >
       <div className="relative m-auto flex gap-2  p-4 text-base md:max-w-2xl md:gap-6 md:py-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
         <div className="min-w-[30px]">
-          {role === "assistant" ? <PencilIcon /> : <UserCircleIcon />}
+          {role === "assistant" ? (
+            <SparklesIcon
+              className={`${
+                receivedLight ? "bg-white" : "bg-[#10002b] text-gray-100"
+              }`}
+            />
+          ) : (
+            <UserCircleIcon
+              className={`${
+                receivedLight ? "bg-white" : "bg-[#10002b] text-gray-100"
+              }`}
+            />
+          )}
         </div>
 
         <div className="flex w-full flex-col  sm:flex-row sm:gap-4">
           <div className="w-full ">
             {translatedText === "" ? (
-              <div className="prose whitespace-pre-wrap ">
+              <div
+                className={`prose whitespace-pre-wrap ${
+                  receivedLight ? "" : "text-gray-100"
+                }`}
+              >
                 {formatteMessage}
               </div>
             ) : (
-              <div className="prose whitespace-pre-wrap ">{translatedText}</div>
+              <div
+                className={`prose whitespace-pre-wrap ${
+                  receivedLight ? "" : "text-gray-100"
+                }`}
+              >
+                {translatedText}
+              </div>
             )}
             {cover ? (
               <div className="mt-2 flex flex-row">
@@ -105,28 +141,46 @@ export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
                   onMouseEnter={() => showflags()}
                   onClick={() => showflags()}
                 >
-                  <GlobeAltIcon />
+                  <GlobeAltIcon
+                    className={`min-w-[30px] ${
+                      receivedLight ? "" : " text-gray-100"
+                    }`}
+                  />
                 </div>
                 {flagsopen ? (
                   <div
-                    className="mb-2 ml-3 flex w-24 flex-row rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    className={`mb-2 ml-3 flex w-24 flex-row rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
+                      receivedLight ? "bg-white" : "bg-[#3c096c]"
+                    }`}
                     onMouseLeave={() => hideflags()}
                     onClick={() => hideflags()}
                   >
                     <div
-                      className="relative flex w-8  rounded-md p-2 text-sm  hover:bg-gray-100"
+                      className={`relative flex w-8  rounded-md p-2 text-sm   ${
+                        receivedLight
+                          ? "hover:bg-gray-100"
+                          : "hover:bg-gray-400"
+                      }`}
                       onClick={() => translateTo("kk")}
                     >
                       🇰🇿
                     </div>
                     <div
-                      className="relative flex w-8  rounded-md p-2 text-sm  hover:bg-gray-100"
+                      className={`relative flex w-8  rounded-md p-2 text-sm   ${
+                        receivedLight
+                          ? "hover:bg-gray-100"
+                          : "hover:bg-gray-400"
+                      }`}
                       onClick={() => translateTo("ru")}
                     >
                       🇷🇺
                     </div>
                     <div
-                      className="relative flex w-8  rounded-md p-2 text-sm  hover:bg-gray-100"
+                      className={`relative flex w-8  rounded-md p-2 text-sm   ${
+                        receivedLight
+                          ? "hover:bg-gray-100"
+                          : "hover:bg-gray-400"
+                      }`}
                       onClick={() => translateTo("en")}
                     >
                       🇬🇧
@@ -154,12 +208,17 @@ export function ChatLine({ role = "assistant", content, cover, isStreaming }) {
             <></>
           )}
           {cover ||
-          content === "Give me the name and the author of any book to start!" ||
+          content ===
+            "Give me the name and the author of any book and wait for AI generated summaries and captivating images!" ||
           role === "user" ? (
             <></>
           ) : (
             <div className="flex w-2/5 flex-row items-center justify-center ">
-              <div className="h-6 w-6 animate-spin rounded-full border-t-2 border-neutral-800 opacity-60 dark:border-neutral-100"></div>
+              <div
+                className={`h-6 w-6 animate-spin rounded-full border-t-2  opacity-60 dark:border-neutral-100 ${
+                  receivedLight ? "border-black " : "border-gray-100"
+                }`}
+              ></div>
             </div>
           )}
         </div>

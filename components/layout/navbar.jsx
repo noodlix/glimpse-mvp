@@ -34,12 +34,23 @@ export default function NavBar({ session }) {
         } z-30 transition-all`}
       >
         <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto">
-          {session ? (
-            <Bars2Icon className="h-4 w-4" onMouseEnter={() => showroutes()} />
-          ) : (
-            <></>
-          )}
-
+          <div className="flex h-full flex-row gap-4">
+            {session ? (
+              <Bars2Icon
+                className="mt-5 h-4 w-4"
+                onMouseEnter={() => showroutes()}
+              />
+            ) : (
+              <></>
+            )}
+            {/* <div onClick={sendTheme}>
+              {light ? (
+                <SunIcon className="mt-4 h-6 w-4" />
+              ) : (
+                <MoonIcon className="mt-5 h-4 w-4" />
+              )}
+            </div> */}
+          </div>
           <Link
             href="/"
             className="flex items-center font-display text-2xl"

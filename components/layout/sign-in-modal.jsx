@@ -1,6 +1,7 @@
-import { Google, LoadingDots } from "@/components/shared/icons";
+import { LoadingDots } from "@/components/shared/icons";
 import { Dialog, Transition } from "@headlessui/react";
 import { signIn } from "next-auth/react";
+import Image from "next/image";
 import { Fragment, useCallback, useMemo, useState } from "react";
 
 const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
@@ -37,8 +38,8 @@ const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full overflow-hidden shadow-xl transition-all md:max-w-md md:rounded-2xl md:border md:border-gray-200">
-                <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
+              <Dialog.Panel className="w-4/12 overflow-hidden rounded-2xl shadow-xl transition-all md:border md:border-gray-200">
+                <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-16 py-6 pt-8 text-center">
                   {/* <Image
                     src="/n17r.png"
                     alt="Logo"
@@ -66,7 +67,14 @@ const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
                       <LoadingDots color="#808080" />
                     ) : (
                       <>
-                        <Google className="h-5 w-5" />
+                        <Image
+                          src="/google1.png"
+                          className="h-6 w-6"
+                          width="5"
+                          height="5"
+                          alt=""
+                        />
+                        {/* <Google  /> */}
                         <p>Sign In with Google</p>
                       </>
                     )}

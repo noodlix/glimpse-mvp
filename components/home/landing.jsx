@@ -18,14 +18,35 @@ export default function Landing() {
       <div className={s.background}>
         <div className={s.logo}>Glimpse</div>
       </div>
+
+      <div className={s.howitworkscont}>
+        <div className={s.howitworks}>
+          <div className={s.howtitle}>How does it work?</div>
+          <div>
+            <div className={s.howtext}>
+              Enter any book title, AI will write a summary of it weaving its
+              magic, and then generate a unique illustration based on its
+              content
+            </div>
+            <div className={s.howtext}>
+              Get a glimpse of the book you are about to pick up!!
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className={s.intro}>
-        <div className={s.introtext1}>Find Books For You!</div>
-        <div className={s.introtext2}>
-          Enter the world of AI-generated book covers with Glipmse - a
-          game-changer for avid readers
+        <div className={s.intros}>
+          <div className={s.introtext1}>Find Books For You!</div>
+          <div className={s.introtext2}>
+            Enter the world of AI-generated book covers with Glipmse - a
+            game-changer for avid readers
+          </div>
         </div>
       </div>
       <div className={s.examplescontainer}>
+        <div className={s.examplestext}>Take a look:</div>
+
         <div className={s.examples}>
           <div className={s.examplecard}>
             <div className={s.cardimg}>
@@ -115,21 +136,6 @@ export default function Landing() {
         </div>
       </div>
 
-      <div className={s.howitworkscont}>
-        <div className={s.howitworks}>
-          <div className={s.howtitle}>How does it work?</div>
-          <div>
-            <div className={s.howtext}>
-              Enter any book title, and our AI begins weaving its magic,
-              generating a plethora of unique designs
-            </div>
-            <div className={s.howtext}>
-              Get a glimpse of the book you are about to pick up
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className={s.ready}>
         <div className={s.readytitle}>Get a Glipmse of any book!!!</div>
         <div>
@@ -149,7 +155,7 @@ export default function Landing() {
             activeDescription === "donate" ? s.donate : ""
           }`}
         >
-          Donate
+          +77077826653
         </div>
         <div
           className={` ${s.smdescription} ${

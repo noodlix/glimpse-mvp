@@ -17,7 +17,7 @@
   height: auto;
   z-index: 5;
   position: relative;
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
   font-family: "Oi", sans-serif;
   color: #3c096c;
@@ -28,27 +28,43 @@
   text-align: center;
 }
 @media screen and (max-width: 610px) {
-  /* .logo{
-    font-size: 80px;
-  } */
   .intro {
     /* height: 15vh !important; */
     flex-direction: column !important;
-    /* background-color: red  !important; */
   }
   .introtext1 {
-    width: 150px;
+    width: 70vw;
     font-weight: 200;
-    /* font-size: 20px !important; */
-    /* background-color: aqua; */
+  }
+  .introtext2 {
+    width: 70vw;
+    font-weight: 200;
+    font-size: 20px !important;
+  }
+  .howtext {
+    font-size: 20px !important;
+  }
+  .readytext {
+    font-size: 20px !important;
+  }
+
+  .examples {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .examplecard {
+    width: 70vw !important;
+  }
+  .cardimg {
+    width: 70vw !important;
+  }
+  .cardtext1 {
+    width: 70vw !important;
+  }
+  .cardtext2 {
+    width: 70vw !important;
   }
 }
-
-/* @media screen and (max-width: 460px) {
-  .logo{
-    font-size: 60px;
-  }
-} */
 
 .intro {
   background-color: #9d4edd;
@@ -57,26 +73,32 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 30vh;
+  /* height: 30vh; */
+  padding: 5vw;
+  gap: 20px;
+}
+
+.intros {
+  width: 70vw;
 }
 
 .introtext1 {
-  width: 450px;
-  font-weight: 400;
+  /* width: 450px; */
+  font-weight: 300;
   font-style: normal;
   font-family: "Oi", sans-serif;
   color: #ffffff;
-  font-size: 40px;
   letter-spacing: 0em;
   line-height: 1.2;
+  font-size: 48px;
 }
 
 .introtext2 {
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
   font-family: "Atkinson Hyperlegible";
   color: #ffffff;
-  font-size: 20px;
+  font-size: 25px;
   letter-spacing: 0em;
   line-height: 1.5;
   display: flex;
@@ -87,43 +109,52 @@
   width: 100vw;
   padding: 5vw 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-
+.examplestext {
+  font-weight: 300;
+  font-style: normal;
+  font-family: "Oi", sans-serif;
+  color: #e0aaff;
+  font-size: 48px;
+  letter-spacing: 0em;
+  width: 70vw;
+  margin-bottom: 2vw;
+}
 .examples {
-  width: 90vw;
+  width: 70vw;
   display: grid;
-  grid-template-columns: 50vw 50vw;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 .examplecard {
-  width: 40vw;
+  width: 30vw;
 }
 .cardimg {
-  /* background-color: #ffffff; */
-  width: 35vw;
+  width: 30vw;
   aspect-ratio: 1;
 }
 .cardtext1 {
-  font-weight: 400;
+  width: 30vw;
+  font-weight: 300;
   font-style: normal;
-  font-family: "Atkinson Hyperlegible", "Atkinson Hyperlegible Placeholder",
-    sans-serif;
+  font-family: "Atkinson Hyperlegible";
+
   color: #c77dff;
-  font-size: 20px;
+  font-size: 25px;
 }
 .cardtext2 {
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
-  font-family: "Atkinson Hyperlegible", "Atkinson Hyperlegible Placeholder",
-    sans-serif;
+  font-family: "Atkinson Hyperlegible";
+
   color: #ffffff;
   font-size: 16px;
   letter-spacing: 0em;
   line-height: 1.5;
-  width: 35vw;
+  width: 30vw;
 }
 .howitworkscont {
   background-color: #10002b;
@@ -132,8 +163,9 @@
   flex-direction: row;
   justify-content: center;
 }
+
 .howitworks {
-  width: 80vw;
+  width: 70vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -144,7 +176,7 @@
 }
 .howtitle {
   /* width: 80vw; */
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
   font-family: "Oi", sans-serif;
   color: #e0aaff;
@@ -152,12 +184,11 @@
   letter-spacing: 0em;
 }
 .howtext {
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
-  font-family: "Atkinson Hyperlegible", "Atkinson Hyperlegible Placeholder",
-    sans-serif;
+  font-family: "Atkinson Hyperlegible";
   color: #ffffff;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .ready {
@@ -172,7 +203,7 @@
   gap: 20px;
 }
 .readytitle {
-  width: 80vw;
+  width: 70vw;
   font-weight: 300;
   font-style: normal;
   font-family: "Oi", sans-serif;
@@ -183,13 +214,13 @@
   gap: 10px;
 }
 .readytext {
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
-  font-family: "Atkinson Hyperlegible", "Atkinson Hyperlegible Placeholder",
-    sans-serif;
+  font-family: "Atkinson Hyperlegible";
+
   color: #9d4edd;
-  font-size: 20px;
-  width: 80vw;
+  font-size: 25px;
+  width: 70vw;
   /* text-align: center; */
 }
 
@@ -200,14 +231,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 20vh;
+  height: 10vh;
 }
 .sm {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 20vh;
+  height: 10vh;
   gap: 10px;
 }
 

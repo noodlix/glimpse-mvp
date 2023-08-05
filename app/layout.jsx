@@ -44,7 +44,7 @@ export default async function RootLayout({ children }) {
         <Suspense fallback="...">
           <Nav />
         </Suspense>
-        <main className="relative flex min-h-screen flex-col items-center justify-center pt-16">
+        <main className="relative flex min-h-screen flex-col items-center justify-center overflow-x-hidden pt-16">
           {children}
         </main>
         <Analytics />
