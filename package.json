@@ -13,7 +13,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
-    "@vercel/analytics": "^0.1.6",
+    "@vercel/analytics": "^0.1.11",
     "@vercel/og": "^0.0.26",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
